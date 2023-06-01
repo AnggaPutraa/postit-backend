@@ -7,11 +7,6 @@ import { PostDto } from './dto/_index';
 export class PostController {
     constructor(private postService: PostService) { }
 
-    @Post()
-    @HttpCode(HttpStatus.CREATED)
-    createPost(@GetCurrentUserById() userId: string, @Body() data: PostDto) {
-        return this.postService.createPost(userId, data);
-    }
 
     @Get()
     @HttpCode(HttpStatus.OK)
@@ -24,4 +19,10 @@ export class PostController {
         return this.postService.getPost(postId);
     }
 
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    createPost(@GetCurrentUserById() userId: string, @Body() data: PostDto) {
+        return this.postService.createPost(userId, data);
+    }
+    
 }

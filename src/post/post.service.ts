@@ -48,4 +48,8 @@ export class PostService {
 
     async createComment() { }
 
+    async addLikeToPost() { }
+
+    async removeLikeFromPost() { }
+
 }
