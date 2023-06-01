@@ -17,8 +17,8 @@ export class AuthService {
         const newUser = await this.prisma.user.create({
             data: {
                 email: data.email,
-                hashedPassword
-            }
+                hashedPassword: hashedPassword,
+            },
         });
 
         const tokens = await this.getTokens(newUser.id, newUser.email);
@@ -75,7 +75,7 @@ export class AuthService {
         return tokens;
     }
 
-    private hashData(data: string) {
+    hashData(data: string) {
         return bycrypt.hash(data, 10);
     }
 
