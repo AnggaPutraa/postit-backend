@@ -16,7 +16,6 @@ export class PostService {
                         email: true,
                     },
                 },
-                comments: true
             },
             orderBy: {
                 createdAt: 'desc'
@@ -28,7 +27,16 @@ export class PostService {
     async getPost(postId: string): Promise<Post> {
         const post = await this.prisma.post.findUnique({
             where: {
-                id: postId
+                id: postId,
+            },
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        email: true,
+                    },
+                },
+                comments: true
             }
         });
         return post;
@@ -43,13 +51,5 @@ export class PostService {
             }
         });
     }
-
-    async getComments() { }
-
-    async createComment() { }
-
-    async addLikeToPost() { }
-
-    async removeLikeFromPost() { }
 
 }

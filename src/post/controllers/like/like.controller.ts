@@ -1,4 +1,4 @@
 import { Controller } from '@nestjs/common';
 
-@Controller('like')
+@Controller('post/like')
 export class LikeController {}

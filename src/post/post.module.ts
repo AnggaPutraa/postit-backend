@@ -8,6 +8,6 @@ import { LikeService } from './services/like/like.service';
 
 @Module({
   controllers: [PostController, CommentController, LikeController],
-  providers: [PostService, CommentService, LikeService]
+  providers: [PostService, CommentService, LikeService],
 })
 export class PostModule {}
