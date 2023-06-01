@@ -16,13 +16,4 @@ export class CommentService {
             }
         });
     }
-
-    async getComments(postId: string): Promise<Comment[]> {
-        const comments = await this.prisma.comment.findMany({
-            where: {
-                postId: postId
-            }
-        });
-        return comments;
-    }
 }

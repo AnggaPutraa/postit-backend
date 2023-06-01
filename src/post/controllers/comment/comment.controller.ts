@@ -7,12 +7,6 @@ import { CommentService } from 'src/post/services/comment/comment.service';
 export class CommentController {
     constructor(private commentService: CommentService) { }
 
-    @Get()
-    @HttpCode(HttpStatus.OK)
-    getComments(@Param('postId') postId: string) {
-        return this.commentService.getComments(postId);
-    }
-
     @Post()
     @HttpCode(HttpStatus.CREATED)
     createComment(

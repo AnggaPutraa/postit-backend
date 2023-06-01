@@ -14,10 +14,10 @@ CREATE TABLE "User" (
 CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
     "body" TEXT NOT NULL,
+    "image" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT NOT NULL,
-    "likedIds" TEXT[],
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
@@ -25,11 +25,11 @@ CREATE TABLE "Post" (
 -- CreateTable
 CREATE TABLE "Comment" (
     "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "postId" TEXT NOT NULL,
     "body" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "userId" TEXT NOT NULL,
-    "postId" TEXT NOT NULL,
 
     CONSTRAINT "Comment_pkey" PRIMARY KEY ("id")
 );

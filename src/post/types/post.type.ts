@@ -5,7 +5,6 @@ export type Post = {
     createdAt: Date;
     updatedAt: Date;
     userId: string;
-    likedIds: string[];
     user: {
       id: string;
       email: string;
