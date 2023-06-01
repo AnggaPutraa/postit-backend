@@ -1,4 +1,27 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { PostService } from './post.service';
+import { GetCurrentUserById } from 'src/common/decorators/getCurrentUserById.decorator';
+import { PostDto } from './dto/_index';
 
 @Controller('post')
-export class PostController {}
+export class PostController {
+    constructor(private postService: PostService) { }
+
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    createPost(@GetCurrentUserById() userId: string, @Body() data: PostDto) {
+        return this.postService.createPost(userId, data);
+    }
+
+    @Get()
+    @HttpCode(HttpStatus.OK)
+    getPosts() {
+        return this.postService.getPosts();
+    }
+
+    @Get('/:postId')
+    getPost(@Param('postId') postId: string) {
+        return this.postService.getPost(postId);
+    }
+
+}
