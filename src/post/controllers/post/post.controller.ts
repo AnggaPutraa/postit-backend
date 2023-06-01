@@ -1,7 +1,7 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post } from '@nestjs/common';
-import { PostService } from './post.service';
+import { PostService } from '../../services/post/post.service';
 import { GetCurrentUserById } from 'src/common/decorators/getCurrentUserById.decorator';
-import { PostDto } from './dto/_index';
+import { PostDto } from '../../dto/_index';
 
 @Controller('post')
 export class PostController {
