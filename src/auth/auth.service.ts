@@ -13,6 +13,14 @@ export class AuthService {
         private jwtService: JwtService) { }
 
     async localSignUp(data: AuthDto): Promise<Tokens> {
+        const isUserExist = await this.prisma.user.findUnique({
+            where: {
+                email: data.email,
+            },
+        });
+
+        if (isUserExist) throw new ForbiddenException('User Already Exist');
+
         const hashedPassword = await this.hashData(data.password);
         const newUser = await this.prisma.user.create({
             data: {
@@ -32,13 +40,15 @@ export class AuthService {
                 email: data.email
             }
         });
+
         if (!user) throw new ForbiddenException('Access Denied');
+
         const isPasswordMatch = await bycrypt.compare(data.password, user.hashedPassword);
         if (!isPasswordMatch) throw new ForbiddenException('Access Denied');
 
         const tokens = await this.getTokens(user.id, user.email);
         await this.updateHashedRefreshToken(user.id, tokens.refresh_token);
-        return tokens;
+        return tokens
     }
 
     async logout(userId: string) {
