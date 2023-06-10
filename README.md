@@ -1,2 +1,2 @@
 # PostIt - Backend
-PostIt Backend repositories. A RESTful API project built with the powerful NestJS framework. Provides a simple platform for creating posts and comments, similar to a simplified version of Twitter. The API is secured using JWT authentication for enhanced security.
+A RESTful API project built with the powerful NestJS framework. Provides a simple platform for creating users, posts and comments. The API is secured using JWT authentication for enhanced security.
